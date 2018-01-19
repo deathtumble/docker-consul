@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+eval $(aws ecr get-login --no-include-email --region eu-west-1)
+docker build -t consul 0.X
+
+token=$(docker images | grep '^consul' | grep latest | sed -r "s/\S*\s*\S*\s*(\S*).*/\1/")
+
+docker tag consul:latest 453254632971.dkr.ecr.eu-west-1.amazonaws.com/consul:$token
+docker push 453254632971.dkr.ecr.eu-west-1.amazonaws.com/consul:$token
