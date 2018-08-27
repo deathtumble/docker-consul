@@ -60,7 +60,7 @@ EXPOSE 8301 8301/udp 8302 8302/udp
 
 # HTTP and DNS (both TCP and UDP) are the primary interfaces that applications
 # use to interact with Consul.
-EXPOSE 8500 8600 8600/udp
+EXPOSE 8600 8600/udp
 
 RUN mkdir -p /consul/data && \
     mkdir -p /etc/modd/ && \
