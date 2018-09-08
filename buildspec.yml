@@ -6,6 +6,7 @@ phases:
     - echo Building the Docker image...
     - SHA1TIMESTAMP="$(date +%s | sha1sum | awk '{print substr($1,1,7)}')"
     - echo $SHA1TIMESTAMP
+    - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
     - $(aws ecr get-login --no-include-email --region eu-west-1)
     - docker build -t consul:latest .
     - docker tag consul:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/consul:$SHA1TIMESTAMP
